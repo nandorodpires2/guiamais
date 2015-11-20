@@ -16,4 +16,14 @@ class Model_DbTable_Empresa extends Zend_Db_Table_Abstract {
     protected $_name = "empresa";
     protected $_primary = "empresa_id";
     
+    public function busca($key) {
+        
+        $select = $this->select()
+                ->from($this->_name, array('*'))
+                ->where("empresa_servico like '%{$key}%'");
+                
+        return $this->fetchAll($select);
+        
+    }
+    
 }

@@ -29,6 +29,11 @@ class Form_Site_Cadastro extends Zend_Form {
         $empresa_tipo->setRequired();
         
         // empresa_cpf_cnpj
+        $empresa_cpf_cnpj = new Zend_Form_Element_Text("empresa_cpf_cnpj");
+        $empresa_cpf_cnpj->setLabel("CPF/CNPJ: ");
+        $empresa_cpf_cnpj->setAttribs(array(
+            'class' => 'form-control'
+        ));
         
         // empresa_nome
         $empresa_nome = new Zend_Form_Element_Text("empresa_nome");
@@ -52,7 +57,11 @@ class Form_Site_Cadastro extends Zend_Form {
         ));
         
         // empresa_telefone
-        
+        $empresa_telefone = new Zend_Form_Element_Text("empresa_telefone");
+        $empresa_telefone->setLabel("Telefone: ");
+        $empresa_telefone->setAttribs(array(
+            'class' => 'form-control'
+        ));
         
         // empresa_celular
         $empresa_celular = new Zend_Form_Element_Text("empresa_celular");
@@ -62,23 +71,42 @@ class Form_Site_Cadastro extends Zend_Form {
         ));
         
         // empresa_endereco
+        $empresa_endereco = new Zend_Form_Element_Text("empresa_endereco");
+        $empresa_endereco->setLabel("Endereco: ");
+        $empresa_endereco->setAttribs(array(
+            'class' => 'form-control'
+        ));
         
         // empresa_numero
+        $empresa_numero = new Zend_Form_Element_Text("empresa_numero");
+        $empresa_numero->setLabel("Número: ");
+        $empresa_numero->setAttribs(array(
+            'class' => 'form-control'
+        ));
         
         // empresa_complemento
+        $empresa_complemento = new Zend_Form_Element_Text("empresa_complemento");
+        $empresa_complemento->setLabel("Compelmento: ");
+        $empresa_complemento->setAttribs(array(
+            'class' => 'form-control'
+        ));
         
         // empresa_bairro
+        $empresa_bairro = new Zend_Form_Element_Text("empresa_bairro");
+        $empresa_bairro->setLabel("Bairro: ");
+        $empresa_bairro->setAttribs(array(
+            'class' => 'form-control'
+        ));
         
         // empresa_cidade
         
         // empresa_estado
         
         // empresa_servico
-        $empresa_servico = new Zend_Form_Element_Textarea("empresa_servico");
+        $empresa_servico = new Zend_Form_Element_Text("empresa_servico");
         $empresa_servico->setLabel("Cadastre os serviços que oferece:");
         $empresa_servico->setAttribs(array(
             'class' => 'form-control',
-            'rows' => 10
         ));        
         
         // submit
@@ -88,11 +116,17 @@ class Form_Site_Cadastro extends Zend_Form {
         
         $this->addElements(array(
             $empresa_tipo,
+            $empresa_cpf_cnpj,
             $empresa_nome,
             $empresa_responsavel,
             $empresa_email,
+            $empresa_endereco,
+            $empresa_numero,
+            $empresa_complemento,
+            $empresa_bairro,
+            $empresa_telefone,
             $empresa_celular,
-            $empresa_servico,
+            $empresa_servico,            
             $submit
         ));  
         
