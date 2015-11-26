@@ -1,13 +1,25 @@
 <footer class="small">
-    <div class="row">
-        <div class="col-md-12">
-            <a href="" class="">Política de Privacidade</a>                        
-            <a href="" class="">Termo de Uso</a>                        
+    <div class="container" id="">
+        <div class="row disclaimer">
+            <div class="col-md-12">
+                <p><strong>ATENÇÃO:</strong> O GuiaSarzedo somente divulga as informações, não sendo responsável pela compra, venda, troca ou cobranças de quaisquer produtos, serviços, promoções, classificados ou dicas gerados a partir da veiculação dos anúncios.</p>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6  col-md-offset-3 text-center">
-            <p><?php echo $this->translate("Todos os direitos reservados"); ?></p>
-        </div>                    
+    <div class="row sitemap">
+        <div class="col-md-12 text-center">
+            <a href="<?php echo $this->url(array('controller' => 'quem-somos'), null, true); ?>" class="">Guia Sarzedo - Quem Somos</a> | 
+            <a href="<?php echo $this->url(array('controller' => 'cadastro'), null, true); ?>" class="">Cadastre-se</a> | 
+            <a href="<?php echo $this->url(array('controller' => 'faq'), null, true); ?>" class="">Ajuda e FAQ</a> | 
+            <a href="<?php echo $this->url(array('controller' => 'dicas-seguranca'), null, true); ?>" class="">Dicas de Segurança</a> | 
+            <a href="<?php echo $this->url(array('controller' => 'termo-privacidade'), null, true); ?>" class="">Cookies, Privacidade e Termos</a> | 
+            <a href="<?php echo $this->url(array('controller' => 'contato'), null, true); ?>" class="">Contato</a> | 
+            <a href="<?php echo $this->url(array('controller' => 'publicidade'), null, true); ?>" class="">Anuncie Aqui</a>
+        </div>
+    </div>
+    <div class="row copyright">
+        <div class="col-md-12 text-center">
+            <p><?php echo $this->translate("Copyright © 2015 Guia Sarzedo - Guia de Produtos e Serviços de  Sarzedo e região."); ?> <?php echo $this->translate("Todos os direitos reservados."); ?></p>
+        </div>
     </div>
 </footer>
