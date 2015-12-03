@@ -28,7 +28,10 @@ class Site_CadastroController extends Zend_Controller_Action {
                 $data = $formSiteCadastro->getValues();
                 
                 $data['empresa_servico'] = explode(',', $data['empresa_servico']);
-                $data['empresa_servico'] = Zend_Json_Encoder::encode($data['empresa_servico']);
+                $options = array('charset' => 'utf-8');
+                $data['empresa_servico'] = Zend_Json_Encoder::encode($data['empresa_servico'], false, $options);
+                
+                Zend_Debug::dump($data); die();
                 
                 try {
                     $modelEmpresa = new Model_DbTable_Empresa();

@@ -16,4 +16,15 @@ class Model_DbTable_Servico extends Zend_Db_Table_Abstract {
     protected $_name = "servico";
     protected $_primary = "servico_id";
     
+    public function getServicos() {
+        
+        $select = $this->select()
+                ->from($this->_name)
+                ->where("servico_ativo = ?", 1)
+                ->group("servico_tag");
+        
+        return $this->fetchAll($select);
+        
+    }
+    
 }

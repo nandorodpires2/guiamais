@@ -6,6 +6,8 @@
         </div>
     </div>
 </section-->
+
+<!--  -->
 <section class="intro">
     <div class="row">
         <div class="col-md-12">
@@ -20,3 +22,32 @@
         </div>
     </div>
 </section>
+
+<!-- Buscas mais populares -->
+<div class="container" id="">
+    <section>
+        <div class="row">
+            <div class="col-md-12">
+                <h3><?php echo $this->translate("Buscas mais populares"); ?></h3>
+            </div>
+        </div>    
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <?php foreach ($this->servicos as $servico) : ?>
+                        <span class="label label-info tags">
+                            <a href="<?php echo $this->url(array(
+                                'controller' => 'busca',
+                                'action' => 'index',
+                                'busca' => $servico->servico_tag
+                            ), null, true); ?>" class=""><?php echo $servico->servico_tag; ?></a>
+                        </span>
+                        <?php endforeach; ?>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </section>
+</div>
+    

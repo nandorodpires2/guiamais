@@ -91,3 +91,13 @@ footer a:hover {
     color: #696969;
     text-decoration: none;
 }
+
+/* tags */
+.tags {
+    float: left;
+    margin: 3px 5px;
+}
+.tags a {
+    text-decoration: none;
+    color: #FFF;
+}
