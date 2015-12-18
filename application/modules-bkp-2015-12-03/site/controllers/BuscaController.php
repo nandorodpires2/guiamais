@@ -14,32 +14,15 @@
 class Site_BuscaController extends Zend_Controller_Action {
     
     public function init() {
-        $this->view->headScript()->appendFile($this->view->baseUrl('views/js/site/busca.js'));
+        
     }
     
     public function indexAction() {
         
-        $key = $this->getRequest()->getParam('busca', null);        
+        $key = $this->getRequest()->getParam('busca');        
         $modelEmpresa = new Model_DbTable_Empresa();
         $servicos = $modelEmpresa->busca($key);
         $this->view->servicos = $servicos;        
-        
-        /**
-         * Grava a busca
-         */
-        if ($key) {
-            $dataBusca = array(
-                'busca_key' => $key,
-                'busca_session' => Zend_Session::getId()
-            );
-            $modelBusca = new Model_DbTable_Busca();
-            try {
-                $modelBusca->insert($dataBusca);
-            } catch (Exception $ex) {
-                exit;
-            }
-            
-        }
                 
     }
     

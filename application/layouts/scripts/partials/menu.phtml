@@ -1,3 +1,8 @@
+<?php
+    $frontController = Zend_Controller_Front::getInstance()->getRequest();
+    $module = $frontController->getModuleName();
+    $controller = $frontController->getControllerName();
+?>
 <nav class="navbar navbar-default">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -18,12 +23,16 @@
                 <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>            
             </ul>
             -->
+            <?php if ($module === 'site' && $controller !== 'index') : ?>
             <form class="navbar-form navbar-left" role="search" method="get" action="<?php echo $this->url(array('controller' => 'busca')); ?>">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="busca" placeholder="Busque por produtos ou serviços...">
+                    <label for="exampleInputEmail2" class="sr-only">Produto ou Serviço</label>
+                    <input type="text" class="form-control" name="busca" placeholder="Digite o Produto ou Serviço...">
                 </div>
-                <button type="submit" class="btn btn-default">Buscar <i class="fa fa-search"></i></button>
+                <button type="submit" class="btn btn-primary">Buscar <i class="fa fa-search"></i></button>
             </form>
+            <?php endif; ?>
+
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="<?php echo $this->url(array(
