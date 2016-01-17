@@ -20,10 +20,19 @@ class Model_DbTable_Servico extends Zend_Db_Table_Abstract {
         
         $select = $this->select()
                 ->from($this->_name)
-                ->where("servico_ativo = ?", 1)
-                ->group("servico_tag");
+                ->where("servico_ativo = ?", 1);
         
         return $this->fetchAll($select);
+        
+    }
+    
+    public function getServico($servico) {
+        
+        $select = $this->select()
+                ->from($this->_name)
+                ->where("servico_tag = ?", $servico);
+        
+        return $this->fetchRow($select);
         
     }
     

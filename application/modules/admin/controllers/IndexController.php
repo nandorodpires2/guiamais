@@ -7,16 +7,16 @@
  */
 
 /**
- * Description of QuemSomosController
+ * Description of IndexController
  *
- * @author Fernando Rodrigues
+ * @author Fernando
  */
-class Site_QuemSomosController extends Zend_Controller_Action {
+class Admin_IndexController extends Zend_Controller_Action {
     
-    public function init() {
-        
+    public function init() {        
+        ///$this->_helper->layout->disableLayout();        
     }
-    
+
     public function indexAction() {
         
     }

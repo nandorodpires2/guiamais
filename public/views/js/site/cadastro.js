@@ -28,7 +28,7 @@ $(document).ready(function(){
             position: { collision: 'flip' }, 
             source: function( request, response ) {
                 $.ajax({
-                    url: "/busca/servico",
+                    url: "busca/servico",
                     dataType: "json",
                     data: {
                         key: request.term

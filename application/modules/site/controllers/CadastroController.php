@@ -30,9 +30,7 @@ class Site_CadastroController extends Zend_Controller_Action {
                 $data['empresa_servico'] = explode(',', $data['empresa_servico']);
                 $options = array('charset' => 'utf-8');
                 $data['empresa_servico'] = Zend_Json_Encoder::encode($data['empresa_servico'], false, $options);
-                
-                Zend_Debug::dump($data); die();
-                
+                                               
                 try {
                     $modelEmpresa = new Model_DbTable_Empresa();
                     $modelEmpresa->insert($data);
@@ -42,10 +40,11 @@ class Site_CadastroController extends Zend_Controller_Action {
                     $this->_redirect("/index");
                     
                 } catch (Exception $ex) {
-                    echo "Deu erro: " . $ex->getMessage();
-                    $this->_redirect("/cadastro");
+                    die($ex->getMessage());
                 }
                 
+            } else {
+                Zend_Debug::dump($formSiteCadastro->getErrorMessages());
             }
         }
         
@@ -56,7 +55,13 @@ class Site_CadastroController extends Zend_Controller_Action {
         
         foreach ($servicos as $servico) {
             $modelServico = new Model_DbTable_Servico();
-            $modelServico->insert(array('servico_tag' => $servico));
+            
+            // verifica se já existe o servico
+            $hasServico = $modelServico->getServico($servico);            
+            if (!$hasServico) {
+                $modelServico->insert(array('servico_tag' => $servico));
+            }
+            
         }
         
     }
