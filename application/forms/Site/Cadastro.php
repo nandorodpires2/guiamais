@@ -105,6 +105,7 @@ class Form_Site_Cadastro extends Zend_Form {
         // empresa_servico
         $empresa_servico = new Zend_Form_Element_Text("empresa_servico");
         $empresa_servico->setLabel("Cadastre os serviços que oferece:");
+        $empresa_servico->isArray(true);
         $empresa_servico->setAttribs(array(
             'class' => 'form-control',
         ));        

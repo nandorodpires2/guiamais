@@ -36,9 +36,11 @@ class Site_BuscaController extends Zend_Controller_Action {
             try {
                 $modelBusca->insert($dataBusca);
             } catch (Exception $ex) {
-                exit;
+                //Zend_Debug::dump($ex->getMessage());
             }
             
+        } else {
+            die("Invalid");
         }
                 
     }

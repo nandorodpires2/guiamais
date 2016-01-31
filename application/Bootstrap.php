@@ -52,6 +52,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _initController() {
     	$controller = Zend_Controller_Front::getInstance();
         $controller->registerPlugin(new Plugin_Auth());
+        $controller->registerPlugin(new Plugin_Layout);
     }
     
     /**
@@ -99,7 +100,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _initLayout() {
                 
         $configs = array(
-            'layout' => 'layout',
+            'layout' => 'site',
             'layoutPath' => APPLICATION_PATH . '/layouts/scripts'
         );
         // inicia o componente

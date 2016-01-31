@@ -19,20 +19,16 @@ $(document).ready(function(){
         
     });
     
-    $('#empresa_servico').tagedit({
-        autocompleteURL: 'busca/servico'
-    }); 
-    
     /**
      * Tags do servico
-           
+     */        
     $('#empresa_servico').tagEditor({
         autocomplete: { 
             delay: 0, 
             position: { collision: 'flip' }, 
             source: function( request, response ) {
                 $.ajax({
-                    url: "busca/servico",
+                    url: "busca-servico",
                     dataType: "json",
                     data: {
                         key: request.term
@@ -45,6 +41,5 @@ $(document).ready(function(){
         },
         forceLowercase: false        
     });
-    */  
 });
 
