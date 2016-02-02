@@ -19,6 +19,7 @@
             ), null, true); ?>">GUIASARZEDO</a>
         </div>
 
+        <?php if (Zend_Auth::getInstance()->hasIdentity()) : ?>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             
@@ -56,5 +57,6 @@
                 </li>                
             </ul>
         </div><!-- /.navbar-collapse -->
+        <?php endif; ?>
     </div><!-- /.container-fluid -->
 </nav>

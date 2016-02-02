@@ -33,13 +33,7 @@ class Admin_EmpresaController extends Zend_Controller_Action {
             $data = $this->getRequest()->getPost();            
             if ($formSiteCadastro->isValid($data)) {
                 $data = $formSiteCadastro->getValues();
-                
-                //Zend_Debug::dump($data); die();
-                
-                $data['empresa_servico'] = explode(',', $data['empresa_servico']);
-                $options = array('charset' => 'utf-8');
-                $data['empresa_servico'] = Zend_Json_Encoder::encode($data['empresa_servico'], false, $options);
-                                               
+                                                               
                 try {
                     $modelEmpresa = new Model_DbTable_Empresa();
                     $modelEmpresa->insert($data);
@@ -74,7 +68,7 @@ class Admin_EmpresaController extends Zend_Controller_Action {
      * @param type $servicos
      */
     private function setServicos($servicos) {
-        $servicos = Zend_Json_Decoder::decode($servicos);
+        $servicos = explode(',', $servicos);
         
         foreach ($servicos as $servico) {
             $modelServico = new Model_DbTable_Servico();

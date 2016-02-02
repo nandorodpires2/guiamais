@@ -12,9 +12,19 @@
             <?php if ($this->servicos->count() > 0) : ?>
             <div class="row">        
                 <?php foreach ($this->servicos as $servico) : ?>
-                <div class="col-md-4">
+                <?php $muted = $servico->empresa_ativo ? '' : 'text-muted'; ?>
+                <div class="col-md-4 <?php echo $muted; ?>">
                     <div class="well">  
                         <div class="row">
+                            <?php if (!$servico->empresa_ativo) : ?>
+                            <div class="col-lg-12">
+                                <a href="<?php echo $this->url(array(
+                                    'controller' => 'cadastro',
+                                    'action' => 'validar',
+                                    'empresa' => $servico->empresa_id
+                                ), null, true); ?>" class="small text-danger">Sou o dono</a>
+                            </div>
+                            <?php endif; ?>
                             <div class="col-lg-6">
                                 <!--<span class="small"><i class="fa fa-bookmark"></i> Serviço</span>-->
                             </div>
@@ -33,7 +43,7 @@
                                 <h5><i class="fa fa-home"></i> <?php echo $servico->empresa_nome; ?></h5>
                                 <?php endif; ?>
                                 <h5><i class="fa fa-user"></i> <?php echo $servico->empresa_responsavel; ?></h5>
-                                <p class=""><i class="fa fa-tags"></i> <?php echo $this->servico($servico->empresa_servico); ?></p>
+                                <p class=""><i class="fa fa-tags"></i> <?php echo $servico->empresa_servico; ?></p>
                                 <p class=""><i class="fa fa-map-marker"></i> 
                                     <?php echo $servico->empresa_endereco; ?>,
                                     <?php echo $servico->empresa_numero; ?> - 

@@ -21,9 +21,14 @@ class Model_DbTable_Empresa extends Zend_Db_Table_Abstract {
         $select = $this->select()
                 ->from($this->_name, array('*'))
                 ->where("empresa_servico like '%{$key}%'");
-        echo $select->__toString();
+        
         return $this->fetchAll($select);
         
+    }
+    
+    public function getEmpresa($empresa_id) {
+        $where = $this->getDefaultAdapter()->quoteInto("empresa_id = ?", $empresa_id);
+        return $this->fetchRow($where);
     }
     
 }

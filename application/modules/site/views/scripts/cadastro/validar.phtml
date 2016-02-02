@@ -1,0 +1,40 @@
+<div class="container" id="">
+    <section>
+        <div class="row">
+            <div class="col-md-12">
+                <h3><?php echo $this->translate("Validar Cadastro"); ?></h3>
+                <hr />
+            </div>
+        </div> 
+        <?php if (!$this->empresa->empresa_ativo) : ?>
+        <div class="row">
+            <div class="col-md-6">
+                <?php if (!$this->is_post) : ?>
+                <p>
+                    Selecione o telefone para enviar o código
+                </p>
+                <form method="post">                    
+                    <input type="radio" name="telefone" id="" value="<?php echo $this->empresa->empresa_celular; ?>" /> <?php echo $this->celular($this->empresa->empresa_celular); ?><br />                    
+                    <button class="btn btn-success">Enviar código</button>
+                </form>
+                <?php else : ?>
+                <p>
+                    Insira o códgo enviado
+                </p>
+                <form method="post">                    
+                    <label>Código</label>
+                    <input class="form-control" type="text" name="codigo" id="" value="" />
+                    <button class="btn btn-success">Enviar código</button>
+                </form>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php else : ?>
+        <div class="row">
+            <div class="col-md-6">
+                <p>Cadastro ativado</p>
+            </div>
+        </div>
+        <?php endif; ?>
+    </section>
+</div>

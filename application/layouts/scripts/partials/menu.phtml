@@ -24,7 +24,7 @@
             </ul>
             -->
             <?php if ($module === 'site' && $controller !== 'index') : ?>
-            <form class="navbar-form navbar-left" role="search" method="get" action="<?php echo $this->url(array('controller' => 'busca')); ?>">
+            <form class="navbar-form navbar-left" role="search" method="get" action="<?php echo $this->url(array('controller' => 'busca'), null, true); ?>">
                 <div class="form-group">
                     <label for="exampleInputEmail2" class="sr-only">Produto ou Serviço</label>
                     <input type="text" class="form-control" name="busca" placeholder="Digite o Produto ou Serviço...">

@@ -19,13 +19,15 @@ $(document).ready(function(){
         
     });
     
+    /*
     $('#empresa_servico').tagedit({
         autocompleteURL: 'busca/servico'
     }); 
-    
+    */
+   
     /**
      * Tags do servico
-           
+     */        
     $('#empresa_servico').tagEditor({
         autocomplete: { 
             delay: 0, 
@@ -45,6 +47,6 @@ $(document).ready(function(){
         },
         forceLowercase: false        
     });
-    */  
+     
 });
 

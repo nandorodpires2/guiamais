@@ -17,6 +17,9 @@ class Site_CadastroController extends Zend_Controller_Action {
         $this->view->headScript()->appendFile($this->view->baseUrl('views/js/site/cadastro.js')); 
     }
     
+    /**
+     * 
+     */
     public function indexAction() {
         
         $formSiteCadastro = new Form_Site_Cadastro();
@@ -26,13 +29,7 @@ class Site_CadastroController extends Zend_Controller_Action {
             $data = $this->getRequest()->getPost();            
             if ($formSiteCadastro->isValid($data)) {
                 $data = $formSiteCadastro->getValues();
-                    
-                //Zend_Debug::dump($data['empresa_servico']); die();
                 
-                $data['empresa_servico'] = explode(',', $data['empresa_servico']);
-                $options = array('charset' => 'utf-8');
-                $data['empresa_servico'] = Zend_Json_Encoder::encode($data['empresa_servico'], false, $options);
-                                               
                 try {
                     $modelEmpresa = new Model_DbTable_Empresa();
                     $modelEmpresa->insert($data);
@@ -52,8 +49,77 @@ class Site_CadastroController extends Zend_Controller_Action {
         
     }
     
+    /**
+     * 
+     */
+    public function validarAction() {
+        
+        $empresa_id = $this->getRequest()->getParam("empresa");        
+        $this->view->is_post = false;         
+        
+        /**
+         * dados da empresa
+         */
+        $modelEmpresa = new Model_DbTable_Empresa();
+        $empresa = $modelEmpresa->getEmpresa($empresa_id);
+        $this->view->empresa = $empresa;
+        
+        if ($this->getRequest()->isPost()) {
+                        
+            $telefone = $this->getRequest()->getParam("telefone", null);
+            $codigo = $this->getRequest()->getParam("codigo", null);
+            
+            if ($telefone) {
+                $this->sendCode($telefone, $empresa_id);
+            }
+            
+            if ($codigo) {
+                $this->checkCode($codigo, $empresa_id);
+            }            
+            
+            $this->view->is_post = true;
+        }
+        
+    }
+    
+    /**
+     * 
+     * @param type $phone
+     */
+    private function sendCode($phone, $empresa_id) {
+        
+    }
+    
+    /**
+     * 
+     * @param type $code
+     */
+    private function checkCode($code, $empresa_id) {
+        $code_ok = '1234';
+        
+        if ($code == $code_ok) {
+            
+            // atualiza o status
+            $modelEmpresa = new Model_DbTable_Empresa();
+            try {
+                $modelEmpresa->update(array('empresa_ativo' => 1), "empresa_id = {$empresa_id}");
+                $this->_redirect("cadastro/validar/empresa/{$empresa_id}");
+            } catch (Exception $ex) {
+
+            }
+            
+        } else {
+            die('codigo errado');
+        }
+    }
+
+    /**
+     * 
+     * @param type $servicos
+     */
     private function setServicos($servicos) {
-        $servicos = Zend_Json_Decoder::decode($servicos);
+        
+        $servicos = explode(',', $servicos);
         
         foreach ($servicos as $servico) {
             $modelServico = new Model_DbTable_Servico();

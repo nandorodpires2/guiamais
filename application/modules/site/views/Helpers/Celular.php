@@ -7,14 +7,14 @@
  */
 
 /**
- * Description of Servico
+ * Description of Celular
  *
  * @author Fernando Rodrigues
  */
-class Zend_View_Helper_Servico extends Zend_View_Helper_Abstract {
+class Zend_View_Helper_Celular extends Zend_View_Helper_Abstract {
     
-    public function servico($servico) {
-        return $servico;        
+    public function celular($numero) {
+        return substr($numero, 0, -4)."XXXX";
     }
     
 }
